@@ -235,3 +235,375 @@ style Response fill:#9333ea,color:#fff
 <img src="server/sociopedia-schema.png" width="650">
 
 ---
+
+---
+
+# 🐳 Docker Architecture
+
+Sociopedia is fully containerized using Docker following production-ready best practices. Each service runs in its own isolated container while communicating through a dedicated Docker network.
+
+## 🚀 Docker Container Architecture
+
+```mermaid
+flowchart LR
+
+Developer["👨‍💻 Developer"]
+
+Dockerfile["📄 Dockerfile"]
+
+Build["🔨 Docker Build"]
+
+Frontend["⚛ React Image"]
+
+Backend["🚀 Node Image"]
+
+Compose["🐳 Docker Compose"]
+
+Network["🌐 Docker Network"]
+
+Containers["📦 Running Containers"]
+
+Developer --> Dockerfile
+
+Dockerfile --> Build
+
+Build --> Frontend
+
+Build --> Backend
+
+Frontend --> Compose
+
+Backend --> Compose
+
+Compose --> Network
+
+Network --> Containers
+
+style Developer fill:#2563eb,color:#fff
+style Dockerfile fill:#16a34a,color:#fff
+style Build fill:#9333ea,color:#fff
+style Frontend fill:#61DAFB,color:#000
+style Backend fill:#339933,color:#fff
+style Compose fill:#2496ED,color:#fff
+style Network fill:#0891b2,color:#fff
+style Containers fill:#f97316,color:#fff
+```
+
+---
+
+# 🏗 Multi-Stage Docker Build
+
+The frontend is built using a multi-stage Docker build to reduce image size and improve production performance.
+
+```mermaid
+flowchart LR
+
+Source["📁 Source Code"]
+
+Node["⚙ Node Builder"]
+
+Install["📦 npm install"]
+
+Build["🔨 npm run build"]
+
+Nginx["🟢 Nginx Image"]
+
+Production["🚀 Production Container"]
+
+Source --> Node
+
+Node --> Install
+
+Install --> Build
+
+Build --> Nginx
+
+Nginx --> Production
+
+style Source fill:#2563eb,color:#fff
+style Node fill:#339933,color:#fff
+style Install fill:#16a34a,color:#fff
+style Build fill:#9333ea,color:#fff
+style Nginx fill:#009639,color:#fff
+style Production fill:#2496ED,color:#fff
+```
+
+---
+
+# 🌍 Docker Compose Architecture
+
+Docker Compose orchestrates all application services using a single configuration file.
+
+```mermaid
+flowchart TD
+
+Compose["🐳 Docker Compose"]
+
+Frontend["⚛ React"]
+
+Backend["🚀 Express"]
+
+Nginx["🟢 Nginx"]
+
+Mongo["☁ MongoDB Atlas"]
+
+Compose --> Frontend
+
+Compose --> Backend
+
+Compose --> Nginx
+
+Backend --> Mongo
+
+Nginx --> Frontend
+
+Nginx --> Backend
+
+style Compose fill:#2496ED,color:#fff
+style Frontend fill:#61DAFB,color:#000
+style Backend fill:#339933,color:#fff
+style Nginx fill:#009639,color:#fff
+style Mongo fill:#13AA52,color:#fff
+```
+
+---
+
+# 🌐 Nginx Reverse Proxy
+
+Nginx acts as the entry point for every incoming request and intelligently routes traffic to the appropriate service.
+
+## Request Routing
+
+```mermaid
+flowchart LR
+
+User["👨 User"]
+
+Nginx["🟢 Nginx"]
+
+React["⚛ React"]
+
+API["🚀 Express API"]
+
+Atlas["☁ MongoDB Atlas"]
+
+User --> Nginx
+
+Nginx -->|"/"| React
+
+Nginx -->|"/api"| API
+
+API --> Atlas
+
+style User fill:#2563eb,color:#fff
+style Nginx fill:#009639,color:#fff
+style React fill:#61DAFB,color:#000
+style API fill:#339933,color:#fff
+style Atlas fill:#13AA52,color:#fff
+```
+
+---
+
+# 🔒 Container Security
+
+Production containers follow Docker security best practices.
+
+```mermaid
+flowchart TB
+
+Docker["🐳 Docker"]
+
+User["👤 Non-root User"]
+
+Health["❤️ Health Check"]
+
+Env["🔐 Environment Variables"]
+
+Network["🌐 Private Network"]
+
+Docker --> User
+
+Docker --> Health
+
+Docker --> Env
+
+Docker --> Network
+
+style Docker fill:#2496ED,color:#fff
+style User fill:#16a34a,color:#fff
+style Health fill:#dc2626,color:#fff
+style Env fill:#9333ea,color:#fff
+style Network fill:#0891b2,color:#fff
+```
+
+### Security Features
+
+- ✅ Non-root containers
+- ✅ Environment variables
+- ✅ Health check endpoint
+- ✅ Docker network isolation
+- ✅ Production images
+- ✅ Lightweight containers
+
+---
+
+# 🌐 Docker Networking
+
+All services communicate through a dedicated isolated Docker bridge network.
+
+```mermaid
+flowchart LR
+
+Client["👨 User"]
+
+Bridge["🌐 Docker Bridge Network"]
+
+Nginx["🟢 Nginx"]
+
+Frontend["⚛ React"]
+
+Backend["🚀 Express"]
+
+Mongo["☁ MongoDB Atlas"]
+
+Client --> Bridge
+
+Bridge --> Nginx
+
+Nginx --> Frontend
+
+Nginx --> Backend
+
+Backend --> Mongo
+
+style Client fill:#2563eb,color:#fff
+style Bridge fill:#0891b2,color:#fff
+style Nginx fill:#009639,color:#fff
+style Frontend fill:#61DAFB,color:#000
+style Backend fill:#339933,color:#fff
+style Mongo fill:#13AA52,color:#fff
+```
+
+---
+
+# 💾 Persistent Storage
+
+Application data remains safe using Docker volumes.
+
+```mermaid
+flowchart LR
+
+Container["📦 Containers"]
+
+Volume["💾 Docker Volume"]
+
+Database["🗄 Local MongoDB"]
+
+Container --> Volume
+
+Volume --> Database
+
+style Container fill:#2496ED,color:#fff
+style Volume fill:#9333ea,color:#fff
+style Database fill:#13AA52,color:#fff
+```
+
+---
+
+# ☁ MongoDB Atlas Integration
+
+The backend securely communicates with MongoDB Atlas using encrypted cloud connections.
+
+```mermaid
+flowchart LR
+
+Express["🚀 Express API"]
+
+TLS["🔒 Secure TLS"]
+
+Atlas["☁ MongoDB Atlas"]
+
+Collections["📂 Collections"]
+
+Express --> TLS
+
+TLS --> Atlas
+
+Atlas --> Collections
+
+style Express fill:#339933,color:#fff
+style TLS fill:#dc2626,color:#fff
+style Atlas fill:#13AA52,color:#fff
+style Collections fill:#9333ea,color:#fff
+```
+
+---
+
+# 📂 Project Structure
+
+```text
+docker-project/
+│
+├── client/
+│   ├── src/
+│   ├── public/
+│   ├── Dockerfile
+│   └── package.json
+│
+├── server/
+│   ├── controllers/
+│   ├── routes/
+│   ├── middleware/
+│   ├── models/
+│   ├── Dockerfile
+│   └── package.json
+│
+├── nginx/
+│   ├── nginx.conf
+│   └── Dockerfile
+│
+├── docker-compose.yml
+├── .env
+├── README.md
+└── dark_theme_ss.png
+```
+
+---
+
+# 🛠 Technology Stack
+
+## Frontend
+
+- React.js
+- Redux Toolkit
+- Material UI
+
+---
+
+## Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+
+---
+
+## DevOps
+
+- Docker
+- Docker Compose
+- Nginx
+- Multi-Stage Docker Build
+- Docker Networks
+- Docker Volumes
+
+---
+
+## Cloud
+
+- MongoDB Atlas
+- DigitalOcean
+- Vercel
+
+---
