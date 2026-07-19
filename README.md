@@ -1,171 +1,237 @@
-# Sociopedia - Production-Ready Dockerized MERN Application
+# 🚀 Sociopedia
 
-Sociopedia is a full-stack social media web application built using the MERN stack and containerized using Docker, incorporating production-level DevOps and deployment practices.
+<div align="center">
+
+# 🌐 Production-Ready Dockerized MERN Application
+
+### 🐳 Docker • 🌍 Nginx Reverse Proxy • ☁️ MongoDB Atlas • ⚡ Production Architecture
+
+<p align="center">
+
+![React](https://img.shields.io/badge/Frontend-React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![Redux](https://img.shields.io/badge/State-Redux-764ABC?style=for-the-badge&logo=redux&logoColor=white)
+![Material UI](https://img.shields.io/badge/UI-Material_UI-007FFF?style=for-the-badge&logo=mui&logoColor=white)
+![NodeJS](https://img.shields.io/badge/Backend-Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Framework-Express-000000?style=for-the-badge&logo=express)
+![MongoDB](https://img.shields.io/badge/Database-MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Docker](https://img.shields.io/badge/Container-Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/Reverse_Proxy-Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
+![MongoDB Atlas](https://img.shields.io/badge/Cloud-MongoDB_Atlas-13AA52?style=for-the-badge&logo=mongodb)
+
+</p>
+
+</div>
 
 ---
 
-## Live Deployment
+# 📖 About Sociopedia
 
-- Frontend (Vercel): https://sociopedia-app.vercel.app  
-- Backend API (DigitalOcean): https://urchin-app-v2nci.ondigitalocean.app  
+**Sociopedia** is a **production-ready full-stack social media platform** built using the MERN stack and containerized with Docker using enterprise deployment practices.
+
+The project demonstrates how modern applications are packaged, secured, networked, and deployed using production-grade Docker techniques.
+
+Instead of running services individually, the complete application is deployed using **Docker Compose**, **Nginx Reverse Proxy**, isolated Docker networks, persistent volumes, and MongoDB Atlas integration.
 
 ---
 
-## Tech Stack
+# ✨ Key Features
 
-### Frontend
-- React
+## 👥 Social Media Platform
+
+- User Authentication
+- JWT Authorization
+- Create Posts
+- Like & Comment
+- Friend System
+- Responsive UI
+
+---
+
+## ⚛ Frontend
+
+- React.js
 - Redux Toolkit
 - Material UI
+- Responsive Design
+- Protected Routes
+- API Integration
 
-### Backend
+---
+
+## 🚀 Backend
+
 - Node.js
 - Express.js
-- MongoDB (Mongoose)
-
-### DevOps and Infrastructure
-- Docker
-- Docker Compose
-- Nginx (Reverse Proxy and Load Balancer)
-- MongoDB Atlas (Cloud Database)
-- Multi-stage Docker builds
-- Non-root container security
-- Container health checks
-- Custom isolated Docker networks
-- Docker volume persistence
+- JWT Authentication
+- REST APIs
+- Secure Middleware
+- MongoDB Integration
 
 ---
 
-## Architecture Overview
+## 🐳 Production Docker Features
 
-The system architecture routes traffic through Nginx to either the static React frontend or the Express API backend, which communicates with the MongoDB database.
+- Multi-stage Docker Build
+- Docker Compose
+- Non-root Containers
+- Health Checks
+- Docker Networks
+- Persistent Volumes
+- Environment Variables
+- Reverse Proxy
+- Production Ready Images
+
+---
+
+# 🌐 Live Deployment
+
+## Frontend
+
+https://sociopedia-app.vercel.app
+
+---
+
+## Backend API
+
+https://urchin-app-v2nci.ondigitalocean.app
+
+---
+
+# 🏗 High Level Architecture
 
 ```mermaid
-graph TD
-    User[User Client] -->|Port 5003| Nginx[Nginx Reverse Proxy]
-    subgraph app-network [Docker Network: app-network]
-        Nginx -->|Route: /| Frontend[React Frontend Container - Port 80]
-        Nginx -->|Route: /api/| Backend[Express Backend Container - Port 5000]
-        Backend -->|Database Connection| MongoContainer[(Local MongoDB Container)]
-    end
-    Backend -.->|Alternative Cloud Database Connection| MongoDBAtlas[(MongoDB Atlas Cloud)]
+flowchart LR
+
+User["👨‍💻 User"]
+
+Browser["🌐 Browser"]
+
+Nginx["🟢 Nginx Reverse Proxy"]
+
+Frontend["⚛ React Frontend"]
+
+Backend["🚀 Express API"]
+
+Atlas["☁ MongoDB Atlas"]
+
+Browser --> Nginx
+
+Nginx --> Frontend
+
+Nginx --> Backend
+
+Backend --> Atlas
+
+style User fill:#2563eb,color:#fff
+style Browser fill:#0ea5e9,color:#fff
+style Nginx fill:#009639,color:#fff
+style Frontend fill:#61DAFB,color:#000
+style Backend fill:#339933,color:#fff
+style Atlas fill:#13AA52,color:#fff
 ```
 
 ---
 
-## Project Structure
+# 🏢 Enterprise System Architecture
 
-```text
-project/
-│
-├── server/ # Backend (Node + Express)
-├── client/ # Frontend (React)
-├── nginx/ # Nginx configuration
-├── docker-compose.yml
-├── .env
-└── README.md
+```mermaid
+flowchart TD
+
+Client["👨 User"]
+
+Internet["🌍 Internet"]
+
+Nginx["🟢 Nginx Reverse Proxy"]
+
+React["⚛ React Container"]
+
+Express["🚀 Node API Container"]
+
+Docker["🐳 Docker Network"]
+
+Mongo["☁ MongoDB Atlas"]
+
+Client --> Internet
+
+Internet --> Nginx
+
+Nginx --> React
+
+Nginx --> Express
+
+React --> Express
+
+Express --> Docker
+
+Docker --> Mongo
+
+style Client fill:#2563eb,color:#fff
+style Internet fill:#0891b2,color:#fff
+style Nginx fill:#009639,color:#fff
+style React fill:#61DAFB,color:#000
+style Express fill:#339933,color:#fff
+style Docker fill:#2496ED,color:#fff
+style Mongo fill:#13AA52,color:#fff
 ```
 
 ---
 
-## Environment Variables
+# 🔄 Request Flow
 
-To run the application locally, create a .env file in the root directory:
+```mermaid
+flowchart LR
 
-```env
-PORT=5000
-MONGO_URL=mongodb+srv://<username>:<password>@cluster.mongodb.net/sociopedia
-JWT_SECRET=your_secret_key
+User["👨 User"]
+
+Browser["🌐 Browser"]
+
+Nginx["🟢 Nginx"]
+
+Frontend["⚛ React"]
+
+API["🚀 Express"]
+
+Database["☁ MongoDB Atlas"]
+
+Response["📄 JSON Response"]
+
+User --> Browser
+
+Browser --> Nginx
+
+Nginx --> Frontend
+
+Frontend --> API
+
+API --> Database
+
+Database --> Response
+
+Response --> Frontend
+
+Frontend --> User
+
+style User fill:#2563eb,color:#fff
+style Browser fill:#0891b2,color:#fff
+style Nginx fill:#009639,color:#fff
+style Frontend fill:#61DAFB,color:#000
+style API fill:#339933,color:#fff
+style Database fill:#13AA52,color:#fff
+style Response fill:#9333ea,color:#fff
 ```
 
-Note: Do not commit the .env file to version control.
-
 ---
 
-## Running the Application with Docker
+# 📸 Application Preview
 
-### Build and Start Containers
-
-```bash
-docker-compose down -v
-docker-compose up -d --build
-```
-
-### Access Application
-
-The application is accessible through Nginx at:
-http://localhost:5003
-
----
-
-## Production Features Implemented
-
-- Complete containerization of frontend and backend services.
-- Multi-stage React production build to minimize frontend image size.
-- Secured backend containers running as a non-root user.
-- Reverse proxy and load balancing implemented using Nginx.
-- Seamless MongoDB Atlas cloud database integration.
-- Automated health check endpoints for container monitoring.
-- Docker log rotation configured to prevent disk space exhaustion.
-- Persistent volumes mapped for the local database container.
-- Isolated, dedicated Docker network for internal container communication.
-- Ready for horizontal scaling and zero-downtime deployments.
-
----
-
-## Backend Health Endpoint
-
-GET /health
-
-Returns:
-200 OK
-
----
-
-## Application Preview
+## 🌙 Dark Theme UI
 
 <img src="dark_theme_ss.png" width="1200">
 
 ---
 
-## Database Schema
+## 🗄 Database Schema
 
-<img src="server/sociopedia-schema.png" width="600">
-
----
-
-## Key Learning Outcomes
-
-- Applying containerization best practices to multi-tier web applications.
-- Managing native npm dependencies inside specialized Docker environments.
-- Handling configuration and environment variables securely.
-- Resolving Docker networking conflicts and configuring port forwarding.
-- Integrating and securing cloud databases.
-- Structuring production-ready configurations for backend nodes.
+<img src="server/sociopedia-schema.png" width="650">
 
 ---
-
-## Future Improvements
-
-- Automating CI/CD pipelines with GitHub Actions.
-- Deploying services to AWS EC2.
-- Automating HTTPS certificate acquisition using Let's Encrypt.
-- Monitoring services with Prometheus and Grafana.
-- Migrating container orchestration to Kubernetes.
-
----
-
-## Acknowledgments
-
-This project was inspired by the tutorial by EdRoh:  
-https://youtu.be/K8YELRmUb5o
-
----
-
-## Authors
-
-Saurav Singh  
-B.Tech CSE | Full Stack and DevOps Enthusiast
-
-Krish Mishra  
-Co-author
