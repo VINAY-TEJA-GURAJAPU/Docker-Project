@@ -645,16 +645,11 @@ Through this project, I gained practical experience in:
 
 # 👨‍💻 Author
 
-**Saurav Kumar**
+**Gurajapu Vinay Teja**
 
 **B.Tech Computer Science Engineering**
 
 🚀 Full Stack Developer | DevOps Enthusiast
-
-### Connect with Me
-
-- 💼 LinkedIn: https://www.linkedin.com/in/your-linkedin
-- 🐙 GitHub: https://github.com/Saurav6200907210
 
 ---
 
